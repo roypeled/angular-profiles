@@ -14,6 +14,10 @@ export default class UsersService {
 
 	getUser(id) {
 		return this.$http.get(root + "users/" + id)
-			.then((response) => response.data);
+			.then((response) => response.data)
+			.then((user) => {
+				user.birthday = new Date().getTime();
+				return user;
+			});
 	}
 }

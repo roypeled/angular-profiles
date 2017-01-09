@@ -16,6 +16,9 @@ export default {
 	
 				<dt>Phone</dt>
 				<dd>{{ $ctrl.user.phone }}</dd>
+				
+				<dt>Birthday</dt>
+				<dd>{{ $ctrl.user.birthday | date:'d/M/yy' }}</dd>
 			</dl>
 		</div>
 	`
