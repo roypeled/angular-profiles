@@ -1,5 +1,7 @@
 class UsersController {
-	constructor(UsersService){
+	constructor(UsersService, $state){
+		this.$state = $state;
+
 		UsersService.getAllUsers()
 			.then(this.onUsers.bind(this));
 	}
@@ -7,19 +9,21 @@ class UsersController {
 	onUsers(users){
 		this.users = users;
 	}
+
+	selectUser(user){
+		this.$state.go("profile", {id: user.id});
+	}
 }
 
 export default {
 	controller: UsersController,
-	bindings: {
-		onSelectedUser: "&"
-	},
 	template: `
 		<p ng-if="!$ctrl.users.length">Loading users...</p>
 		<ul>
 			<li ng-repeat="user in $ctrl.users" 
-			ng-click="$ctrl.onSelectedUser({selected: user})">{{user.name}}</li>
+			ng-click="$ctrl.selectUser(user)">{{user.name}}</li>
 		</ul>
 	`
 }
+
 

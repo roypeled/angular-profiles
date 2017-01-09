@@ -11,4 +11,9 @@ export default class UsersService {
 		return this.$http.get(root + "users")
 			.then((response) => response.data);
 	}
+
+	getUser(id) {
+		return this.$http.get(root + "users/" + id)
+			.then((response) => response.data);
+	}
 }
